@@ -1,0 +1,41 @@
+{
+  "pages": [
+      "pages/home/home",
+      "pages/mine/mine",
+      "pages/login/login",
+      "pages/morePage/morePage",
+      "pages/detail/detail",
+      "pages/rank/rank"
+  ],
+  "tabBar": {
+      "color": "#bdbdbd",
+      "selectedColor": "#39b344",
+      "backgroundColor": "#fff",
+      "list": [
+          {
+              "pagePath": "pages/home/home",
+              "text": "首页",
+              "iconPath": "assets/icon_tab_01.png",
+              "selectedIconPath": "assets/icon_tab_select_01.png"
+          },
+          {
+              "pagePath": "pages/mine/mine",
+              "text": "我的",
+              "iconPath": "assets/icon_tab_03.png",
+              "selectedIconPath": "assets/icon_tab_select_03.png"
+          }
+      ]
+  },
+  "window": {
+      "backgroundTextStyle": "light",
+      "navigationBarBackgroundColor": "#fff",
+      "navigationBarTitleText": "邮箱",
+      "navigationBarTextStyle": "black",
+      "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+      "db-nav": "/module/db-nav/db-nav"
+  }
+}

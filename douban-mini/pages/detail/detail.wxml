@@ -1,0 +1,148 @@
+<!--pages/detail/detail.wxml-->
+<db-nav title="{{ title }}" statusbarColor="#f9f7f4" navbarColor="#f9f7f4"></db-nav>
+<view class="container">
+    <view class="header">
+        <view class="cover-view">
+            <image class="movie-cover" src="{{ movieData.pic.normal }}"></image>
+        </view>
+        <view class="movie-detail-view">
+            <view class="title">{{ movieData.title }}({{ movieData.year }})</view>
+            <view class="origin-title">Fantastic Beasts: The Secrets of Dumbledore</view>
+            <view class="honor_info">
+                <view class="rank">No.{{ movieData.honor_infos[0].rank }}</view>
+                <view class="title">{{ movieData.honor_infos[0].title }}</view>
+            </view>
+            <view class="bottom-title">
+                {{ movieData.genres[0] }} {{ movieData.genres[1] }} / {{ movieData.countries[0] }} {{ movieData.countries[1] }} / {{ movieData.durations[0] }}
+            </view>
+        </view>
+    </view>
+    <view class="operation-view">
+        <view class="item left-view align">
+            <image class="icon" src="/assets/icon_star.png"></image>
+            <view class="title">想看</view>
+        </view>
+        <view class="item right-view align">
+            <image class="icon" src="/assets/icon_like.png"></image>
+            <view class="title">看过</view>
+        </view>
+    </view>
+    <view class="score-view">
+        <view class="title-view">
+            <view class="left-title">™</view>
+            <view class="arrow"></view>
+        </view>
+    </view>
+    <view class="tip-view">
+        被收录于
+        <view class="tip-action-view">
+            <view class="tip-title">神器动物在哪里系列</view>
+            <view class="arrow"></view>
+        </view>
+    </view>
+    <!-- <view class="progress-box">
+        <progress percent="20" color="#EAAA39" stroke-width="6" border-radius="5"/>
+    </view> -->
+    <view class="desc-view">
+        简介
+        <view class="clip-view {{ clipDesc ? 'off' : 'on'}}">
+            阿不思·邓布利多教授（裘德·洛 饰）意识到强大的黑巫师盖勒特·格林德沃（麦斯·米科尔森 饰）正试图夺取魔法世界的控制权。邓布利多了解仅凭他一人之力，将无法阻止格林德沃，于是他委托魔法动物学家纽特·斯卡曼德（埃迪·雷德梅恩 饰）带领一支精良的团队——成员包括男巫、女巫及一位勇敢的麻瓜面包师，来共同执行这项危险任务。一路上他们会遇到各式各样的神奇动物，既有老朋友，也有前所未见的神秘生物；同时他们也随时会与格林德沃不断壮大的追随者发生冲突。这次行动的风险是如此之高……邓布利多还能袖手旁观多久？
+        </view>
+        <view class="clip-button" bindtap="clipDescAction"> {{ clipDesc ? '展开' : '收起' }} </view>
+    </view>
+    <view class="actors-view">
+        <view class="title">影人</view>
+        <scroll-view class="item-wrapper" scroll-x="true">
+            <block wx:for="{{ actors }}" wx:key="unique">
+                <view class="actors-item">
+                    <image class="actors-pic" src="{{ item.avatar.large }}"></image>
+                    <view class="actors-name">{{ item.name }}</view>
+                    <view class="actors-title">{{ item.roles[0] }}</view>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+    <view class="photo-view">
+        <view class="top-view">
+            <view class="title">预告片/剧照</view>
+            <view class="all-view">
+                <view class="title">全部 {{ photoData.total }}</view>
+                <view class="arrow"></view>
+            </view>
+        </view>
+        <scroll-view class="item-wrapper" scroll-x="true">
+            <block wx:for="{{ photoData.photos }}" wx:key="unique">
+                <view class="photo-item">
+                    <image style="height:320rpx; width: {{ 320/item.image.normal.height * item.image.normal.width}}rpx;" src="{{ item.image.normal.url }}" mode="aspectFill"></image>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+    <view class="comments-view">
+        <view class="top-view">
+            <view class="title">短评</view>
+            <view class="all-view">
+                <view class="title">全部 {{ comments.total }}</view>
+                <view class="arrow"></view>
+            </view>
+        </view>
+        <block wx:for="{{ comments.interests }}" wx:key="unique">
+            <view class="content-view">
+                <view class="user-view">
+                    <image class="icon-view" src="{{ item.user.avatar }}"></image>
+                    <view class="name-view">
+                        <view class="nick-name">{{ item.user.name }}</view>
+                        <view class="date">{{ item.create_time }}</view>
+                    </view>
+                </view>
+                <view class="content">
+                    {{ item.comment }}
+                </view>
+                <view class="count-view">
+                    <image class="agree" src="/assets/icon_agree.png"></image>
+                    {{ item.vote_count }}
+                </view>
+                <view class="line"></view>
+            </view>
+        </block>
+        <view class="bottom-view">
+            <view class="title">查看全部短评</view>
+            <view class="arrow"></view>
+        </view>
+    </view>
+    <view class="recommend-view">
+        <view class="title">喜欢这部电影的人也喜欢</view>
+        <scroll-view class="item-wrapper" scroll-x="true">
+            <block wx:for="{{ recommend }}" wx:key="unique">
+                <view class="recommend-item">
+                    <image class="movie-pic" src="{{ item.pic.normal }}"></image>
+                    <view class="movie-name">{{ item.title }}</view>
+                    <view class="movie-score">{{ item.rating.value }}分</view>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+    <view class="review">
+        <view class="review-title-view">
+            <view class="title">影评</view>
+            <view class="count">509条</view>
+        </view>
+        <block wx:for="{{ review.reviews }}" wx:key="unique">
+            <view class="review-content-view">
+                <view class="user-view">
+                    <image class="icon-view" src="{{ item.user.avatar }}"></image>
+                    <view class="nick-name">{{ item.user.name }} 看过</view>
+                </view>
+                <view class="content-title margin">{{ item.title }}</view>
+                <view class="content margin">
+                    {{ item.abstract }}
+                </view>
+                <view class="status-view">
+                    <view class="reply">{{ item.comments_count }}回复 ·</view>
+                    <view class="useful-count">{{ item.useful_count }}有用 ·</view>
+                    <view class="forward">{{ item.reshares_count }}转发</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
